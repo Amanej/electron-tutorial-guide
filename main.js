@@ -1,4 +1,5 @@
-const {app,BrowserWindow} = require('electron')
+const {app,ipcMain,BrowserWindow} = require('electron')
+const fs = require('fs');
 
 // Lifecycle of the app is managed by electron.app
 
@@ -14,6 +15,11 @@ function createWindow() {
 
     // Open devtools
     win.webContents.openDevTools();
+
+    ipcMain.on('block', function() {
+        console.log("Block site");
+        fs.writeFile("myfile.txt", "Hello world!");
+    })
 
     // Close window event
     win.on('close', () => {

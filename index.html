@@ -9,8 +9,17 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+
+    <br/>
+    <button onclick="doIt()">Do</button>
   </body>
   <script>
       console.log(process);
+      const { ipcRenderer } = require('electron');
+
+      doIt = () => {
+        console.log("#Hello");
+        ipcRenderer.send("block","somevalue");
+      }
   </script>
 </html>
